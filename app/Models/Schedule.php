@@ -15,5 +15,7 @@ class Schedule extends Model
         'tanggal',
         'tempat',
         'nama_client',
+        'jam',
+        'status',
     ];
 }

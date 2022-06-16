@@ -14,7 +14,7 @@ class Payment extends Model
         'tunai_keseluruhan',
         'tanggal',
         'status',
-        'keterangan',
+        'terbayar',
     ];
 
     protected $with = ['payment_details'];

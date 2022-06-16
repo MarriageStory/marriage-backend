@@ -31,7 +31,7 @@ class PaymentController extends Controller
             'tunai_keseluruhan' => ['required'],
             'tanggal' => ['required'],
             'status' => ['required'],
-            'keterangan' => ['required'],
+            'terbayar' => ['required'],
         ]);
 
         $payment = Payment::create($attribute);
@@ -64,7 +64,7 @@ class PaymentController extends Controller
             'tunai_keseluruhan' => ['required'],
             'tanggal' => ['required'],
             'status' => ['required'],
-            'keterangan' => ['required'],
+            'terbayar' => ['required'],
         ]);
 
         $payment->update($attribute);

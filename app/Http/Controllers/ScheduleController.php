@@ -33,6 +33,8 @@ class ScheduleController extends Controller
             'tanggal' => ['required'],
             'tempat' => ['required'],
             'nama_client' => ['required'],
+            'jam' => ['required'],
+            'status' => ['required'],
         ]);
 
         $schedule = Schedule::create($attributes);
@@ -66,6 +68,8 @@ class ScheduleController extends Controller
             'tanggal' => ['required'],
             'tempat' => ['required'],
             'nama_client' => ['required'],
+            'jam' => ['required'],
+            'status' => ['required'],
         ]);
 
         $schedule->update($attributes);
