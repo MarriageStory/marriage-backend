@@ -20,6 +20,8 @@ return new class extends Migration
             $table->dateTime('tanggal');
             $table->string('tempat');
             $table->string('nama_client');
+            $table->string('jam');
+            $table->string('status');
             $table->timestamps();
         });
     }
