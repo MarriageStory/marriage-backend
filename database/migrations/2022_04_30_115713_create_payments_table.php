@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('tunai_keseluruhan');
             $table->date('tanggal');
             $table->enum('status', ['done', 'pending'])->default('pending');
-            $table->string('keterangan');
+            $table->string('terbayar');
             $table->timestamps();
         });
     }
