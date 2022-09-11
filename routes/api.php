@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentDetailController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::apiResource('schedules', ScheduleController::class);
+    Route::apiResource('employes', EmployeController::class);
+    Route::apiResource('clients', ClientController::class);
 
     Route::get('/user', function (Request $request) {
         return $request->user();
