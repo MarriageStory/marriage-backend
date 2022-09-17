@@ -25,9 +25,9 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('payments', PaymentController::class);
+    Route::apiResource('payments', PaymentController::class)->middleware('clientMiddleware', 'roleMiddleware');
 
-    Route::prefix('payments')->group(function () {
+    Route::prefix('payments')->middleware('roleMiddleware', 'clientMiddleware')->group(function () {
         Route::get('{payment}/details', [PaymentDetailController::class, 'index']);
         Route::get('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'show']);
         Route::post('{payment}', [PaymentDetailController::class, 'store']);
@@ -35,9 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
     });
 
-    Route::apiResource('schedules', ScheduleController::class);
-    Route::apiResource('employes', EmployeController::class);
-    Route::apiResource('clients', ClientController::class);
+    Route::apiResource('schedules', ScheduleController::class)->middleware('clientMiddleware');
+
 
     Route::get('/user', function (Request $request) {
         return $request->user();
