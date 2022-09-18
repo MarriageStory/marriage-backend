@@ -32,7 +32,6 @@ class ScheduleController extends Controller
             'detail_kegiatan' => ['required'],
             'tanggal' => ['required'],
             'tempat' => ['required'],
-            'nama_client' => ['required'],
             'jam' => ['required'],
             'status' => ['required'],
         ]);
@@ -67,7 +66,6 @@ class ScheduleController extends Controller
             'detail_kegiatan' => ['required'],
             'tanggal' => ['required'],
             'tempat' => ['required'],
-            'nama_client' => ['required'],
             'jam' => ['required'],
             'status' => ['required'],
         ]);

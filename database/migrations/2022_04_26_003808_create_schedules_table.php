@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('detail_kegiatan');
             $table->dateTime('tanggal');
             $table->string('tempat');
-            $table->string('nama_client');
             $table->string('jam');
             $table->string('status');
             $table->foreignId('event_id')->references('id')->on('events')->cascadeOnDelete();

@@ -11,9 +11,7 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_client',
         'tunai_keseluruhan',
-        'tanggal',
         'status',
         'terbayar',
     ];

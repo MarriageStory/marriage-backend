@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    use HasFactory;
+
+    protected $fillable = [
+        'nama_client',
+        'date',
+        'time',
+        'user_id',
+    ];
+
     public function schedules()
     {
         return $this->hasMany(Schedule::class);

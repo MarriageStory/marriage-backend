@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
-class PaymentController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::get();
-        return response()->json(['data' => $payments]);
+        $event = Event::get();
+
+        return response()->json(['data' => $event]);
     }
 
     /**
@@ -27,56 +28,56 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $attribute = $request->validate([
-            'tunai_keseluruhan' => ['required'],
-            'status' => ['required'],
-            'terbayar' => ['required'],
+            'nama_client' => ['required'],
+            'date' => ['required'],
+            'time' => ['required'],
         ]);
 
-        $payment = Payment::create($attribute);
+        $event = Event::create($attribute);
 
-        return response()->json(['data' => $payment]);
+        return response()->json(['data' => $event]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Payment  $payment
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Payment $payment)
+    public function show(Event $event)
     {
-        return response()->json(['data' => $payment]);
+        return response()->json(['data' => $event]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Payment  $payment
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, Event $event)
     {
         $attribute = $request->validate([
-            'tunai_keseluruhan' => ['required'],
-            'status' => ['required'],
-            'terbayar' => ['required'],
+            'nama_client' => ['required'],
+            'date' => ['required'],
+            'time' => ['required'],
         ]);
 
-        $payment->update($attribute);
+        $event->update($attribute);
 
-        return response()->json(['data' => $payment]);
+        return response()->json(['data' => $event]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Payment  $payment
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Payment $payment)
+    public function destroy(Event $event)
     {
-        $payment->delete();
+        $event->delete();
 
         return response()->json(['messages' => "Berhasil Menghapus Payment"]);
     }

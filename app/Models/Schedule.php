@@ -14,9 +14,9 @@ class Schedule extends Model
         'detail_kegiatan',
         'tanggal',
         'tempat',
-        'nama_client',
         'jam',
         'status',
+        'event_id'
     ];
     public function event()
     {
