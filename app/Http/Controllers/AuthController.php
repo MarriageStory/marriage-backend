@@ -15,6 +15,8 @@ class AuthController extends Controller
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required'],
+            'role_name' => ['required'],
+            'role_slug' => ['required'],
         ]);
 
         $attributes['password'] = Hash::make($request->password);
@@ -33,7 +35,7 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
-        $token = $user->createToken('auth_token')->plainTextToken;    
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'access_token' => $token,
