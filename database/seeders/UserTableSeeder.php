@@ -16,21 +16,21 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'role_id' => '1',
+            'role_name' => 'WeddingOrganize',
             'name' => 'WeddingOrganize',
             'email' => 'ceddingOrganize@gmail.com',
             'password' => bcrypt('weddingorganize'),
         ]);
 
         DB::table('users')->insert([
-            'role_id' => '2',
+            'role_name' => 'Client',
             'name' => 'Client',
             'email' => 'client@gmail.com',
             'password' => bcrypt('client'),
         ]);
 
         DB::table('users')->insert([
-            'role_id' => '3',
+            'role_name' => 'Employee',
             'name' => 'employee',
             'email' => 'employee@gmail.com',
             'password' => bcrypt('employee'),

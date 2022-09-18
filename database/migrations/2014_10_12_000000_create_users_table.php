@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('role_id', ['WeddingOrganize', 'employee', 'Client'])->references('role_id')->on('roles')->cascadeOnDelete();
+            $table->string('role_name');
+            $table->foreign('role_name')->references('role_name')->on('roles')->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

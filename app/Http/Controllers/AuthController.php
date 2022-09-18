@@ -23,7 +23,11 @@ class AuthController extends Controller
 
         $user = User::create($attributes);
 
-        return response()->json(['data' => $user]);
+        if ($user) {
+            return response()->json(['data' => $user]);
+        } else {
+            abort('403');
+        }
     }
 
     public function login(Request $request)
