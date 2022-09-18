@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role_id', ['WeddingOrganize', 'employee', 'Client']);
+            $table->foreignId('role_id', ['WeddingOrganize', 'employee', 'Client'])->references('role_id')->on('roles')->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -18,4 +18,8 @@ class Schedule extends Model
         'jam',
         'status',
     ];
+    public function event()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 }

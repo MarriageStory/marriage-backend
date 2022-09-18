@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->integer('tunai_keseluruhan');
-            $table->enum('status', ['done', 'pending'])->default('pending');
-            $table->string('terbayar');
-            $table->foreignId('event_id')->references('id')->on('events')->cascadeOnDelete();
+            $table->string('name_client');
+            $table->string('date');
+            $table->string('time');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('events');
     }
 };

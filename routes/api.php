@@ -37,7 +37,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('schedules', ScheduleController::class)->middleware('clientMiddleware');
 
-
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
