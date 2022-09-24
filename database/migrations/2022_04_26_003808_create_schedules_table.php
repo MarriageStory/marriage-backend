@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tempat');
             $table->string('jam');
             $table->string('status');
-            $table->foreignId('event_id')->references('id')->on('events')->cascadeOnDelete();
+            $table->integer('event_id');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scedules');
+        Schema::dropIfExists('schedules');
     }
 };

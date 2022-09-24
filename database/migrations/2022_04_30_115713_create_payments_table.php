@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('tunai_keseluruhan');
             $table->enum('status', ['done', 'pending'])->default('pending');
             $table->string('terbayar');
-            $table->foreignId('event_id')->references('id')->on('events')->cascadeOnDelete();
+            $table->dateTime('tanggal');
+            $table->integer('event_id');
             $table->timestamps();
         });
     }
