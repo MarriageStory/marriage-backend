@@ -10,19 +10,24 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_client',
+        'name_client',
         'date',
         'time',
+        'tempat',
+        'total_pembayaran',
+        'note',
         'user_id',
     ];
 
-    public function schedules()
-    {
-        return $this->hasMany(Schedule::class);
-    }
+    // protected $with = ['schedules'];
 
-    public function payment()
-    {
-        return $this->hasOne(Payment::class);
-    }
+    // public function schedules()
+    // {
+    //     return $this->hasMany(Schedule::class);
+    // }
+
+    // public function payment()
+    // {
+    //     return $this->hasOne(Payment::class);
+    // }
 }

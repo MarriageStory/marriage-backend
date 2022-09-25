@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('name_client');
             $table->dateTime('date');
             $table->string('time');
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->string('tempat');
+            $table->integer('total_pembayaran');
+            $table->string('note');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

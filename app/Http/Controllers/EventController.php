@@ -28,9 +28,13 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $attribute = $request->validate([
-            'nama_client' => ['required'],
+            'name_client' => ['required'],
             'date' => ['required'],
             'time' => ['required'],
+            'tempat' => ['required'],
+            'total_pembayaran' => ['required'],
+            'note' => ['required'],
+            'user_id' => ['required'],
         ]);
 
         $event = Event::create($attribute);
@@ -59,9 +63,13 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
         $attribute = $request->validate([
-            'nama_client' => ['required'],
+            'name_client' => ['required'],
             'date' => ['required'],
             'time' => ['required'],
+            'tempat' => ['required'],
+            'total_pembayaran' => ['required'],
+            'note' => ['required'],
+            'user_id' => ['required'],
         ]);
 
         $event->update($attribute);
