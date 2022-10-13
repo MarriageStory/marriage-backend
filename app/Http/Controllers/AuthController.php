@@ -18,6 +18,7 @@ class AuthController extends Controller
             'role_name' => ['required'],
             'role_slug' => ['required'],
         ]);
+        
 
         $attributes['password'] = Hash::make($request->password);
 
@@ -32,7 +33,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        if (!Auth::attempt($request->only('email', 'password', 'role_name'))) {
             return response()->json([
                 'message' => 'Invalid login details'
             ], 401);

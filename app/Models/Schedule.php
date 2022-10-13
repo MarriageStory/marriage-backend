@@ -18,9 +18,9 @@ class Schedule extends Model
         'status',
         'event_id'
     ];
-    
-    // public function event()
-    // {
-    //     return $this->belongsTo(Event::class);
-    // }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
 }

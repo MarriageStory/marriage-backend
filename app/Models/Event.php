@@ -17,17 +17,18 @@ class Event extends Model
         'total_pembayaran',
         'note',
         'user_id',
+        'gencode',
     ];
 
-    // protected $with = ['schedules'];
+    protected $with = ['schedules'];
 
-    // public function schedules()
-    // {
-    //     return $this->hasMany(Schedule::class);
-    // }
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 
-    // public function payment()
-    // {
-    //     return $this->hasOne(Payment::class);
-    // }
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
 }

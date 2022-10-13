@@ -58,7 +58,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('events', EventController::class);
     Route::apiResource('schedules', ScheduleController::class);
     // Route::get('schedules', [ScheduleController::class, 'index']);
-    
+
 
     Route::get('/user', function (Request $request) {
         return $request->user();

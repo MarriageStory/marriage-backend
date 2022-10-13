@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Payment;
 use App\Models\PaymentDetail;
 use Illuminate\Http\Request;
@@ -35,6 +36,8 @@ class PaymentDetailController extends Controller
         ]);
 
         $paymentDetail = $payment->payment_details()->create($attributes);
+        $payment->terbayar = $payment->terbayar + $paymentDetail->bayar;
+        $payment->save();
 
         return response()->json(['data' => $paymentDetail]);
     }

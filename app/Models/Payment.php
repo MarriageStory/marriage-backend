@@ -24,8 +24,8 @@ class Payment extends Model
     {
         return $this->hasMany(PaymentDetail::class);
     }
-    // public function event()
-    // {
-    //     return $this->belongsTo(Event::class);
-    // }
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -36,6 +37,8 @@ class EventController extends Controller
             'note' => ['required'],
             'user_id' => ['required'],
         ]);
+
+        $attribute['gencode'] = Str::random(4);
 
         $event = Event::create($attribute);
 

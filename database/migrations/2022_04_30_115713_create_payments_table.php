@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('status', ['done', 'pending'])->default('pending');
             $table->string('terbayar');
             $table->dateTime('tanggal');
-            $table->integer('event_id');
+            $table->foreignId('event_id')->references('id')->on('events');
             $table->timestamps();
         });
     }

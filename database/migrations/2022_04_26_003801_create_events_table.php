@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('tempat');
             $table->integer('total_pembayaran');
             $table->string('note');
-            $table->integer('user_id');
+            $table->string('paket');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('gencode');
             $table->timestamps();
         });
     }
