@@ -15,6 +15,7 @@ class PaymentDetail extends Model
         'tanggal',
         'detail',
         'payment_id',
+        'image'
     ];
 
     public function payment()

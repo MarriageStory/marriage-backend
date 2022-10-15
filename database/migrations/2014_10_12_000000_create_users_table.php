@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role_name');
             $table->foreign('role_name')->references('role_name')->on('roles')->cascadeOnDelete();
+            $table->string('gencode')->default('value');
             $table->rememberToken();
             $table->timestamps();
         });

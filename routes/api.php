@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentDetailController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\EventController;
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
+Route::apiResource('admin', AuthController::class);
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::apiResource('payments', PaymentController::class)->middleware('clientMiddleware', 'roleMiddleware');
@@ -45,8 +48,9 @@ Route::post('logout', [AuthController::class, 'logout']);
 // });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('payments', PaymentController::class);
 
+
+    Route::apiResource('payments', PaymentController::class);
     Route::prefix('payments')->group(function () {
         Route::get('{payment}/details', [PaymentDetailController::class, 'index']);
         Route::get('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'show']);

@@ -33,6 +33,7 @@ class PaymentDetailController extends Controller
             'bayar' => ['required'],
             'tanggal' => ['required'],
             'detail' => ['required'],
+            'image' => ['required|image|mimes:png,jpg,jpeg|max:2048'],
         ]);
 
         $paymentDetail = $payment->payment_details()->create($attributes);

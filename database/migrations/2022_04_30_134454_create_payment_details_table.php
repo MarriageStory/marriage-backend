@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('bayar');
             $table->dateTime('tanggal');
             $table->string('detail');
+            $table->string('image')->nullable();
             $table->foreignId('payment_id')->references('id')->on('payments')->cascadeOnDelete();
             $table->timestamps();
         });

@@ -9,6 +9,39 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
+    public function index()
+    {
+        $data = User::get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $attribute = $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required'],
+            'role_name' => ['required'],
+            'role_slug' => ['required'],
+        ]);
+
+        $user->update($attribute);
+
+        return response()->json(['data' => $user]);
+    }
+    public function show(User $user)
+    {
+        return response()->json(['data' => $user]);
+    }
+    public function destroy(User $user)
+    {
+        $user->delete;
+
+        return response()->json(['messages' => "Berhasil Menghapus Payment"]);
+    }
+
     public function register(Request $request)
     {
         $attributes = $request->validate([
@@ -18,7 +51,7 @@ class AuthController extends Controller
             'role_name' => ['required'],
             'role_slug' => ['required'],
         ]);
-        
+
 
         $attributes['password'] = Hash::make($request->password);
 
