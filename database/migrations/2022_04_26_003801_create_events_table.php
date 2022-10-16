@@ -20,9 +20,14 @@ return new class extends Migration
             $table->string('time');
             $table->string('tempat');
             $table->integer('total_pembayaran');
+            $table->enum('status_pembayaran', ['done', 'pending'])->default('pending');
+            $table->string('jumlah_terbayar');
             $table->string('note');
-            $table->string('paket');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('paket1');
+            $table->string('paket2');
+            $table->string('paket3');
+            $table->string('paket4');
+            $table->string('paket5');
             $table->string('gencode');
             $table->timestamps();
         });

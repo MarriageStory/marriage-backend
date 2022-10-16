@@ -20,7 +20,8 @@ return new class extends Migration
             $table->dateTime('tanggal');
             $table->string('detail');
             $table->string('image')->nullable();
-            $table->foreignId('payment_id')->references('id')->on('payments')->cascadeOnDelete();
+            $table->foreignId('event_id')->references('id')->on('events')->cascadeOnDelete();
+            // $table->foreignId('payment_id')->references('id')->on('payments')->cascadeOnDelete();
             $table->timestamps();
         });
     }

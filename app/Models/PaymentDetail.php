@@ -14,12 +14,17 @@ class PaymentDetail extends Model
         'bayar',
         'tanggal',
         'detail',
-        'payment_id',
+        'event_id',
         'image',
     ];
 
     public function payment()
     {
         return $this->belongsTo(Payment::class);
+    }
+    
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
     }
 }

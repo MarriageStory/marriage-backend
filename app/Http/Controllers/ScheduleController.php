@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Event $event)
     {
         $attributes = $request->validate([
             'nama_kegiatan' => ['required'],
@@ -34,10 +35,11 @@ class ScheduleController extends Controller
             'tempat' => ['required'],
             'jam' => ['required'],
             'status' => ['required'],
-            'event_id' => ['required'],
+            'gencode' => ['required'],
         ]);
 
-        $schedule = Schedule::create($attributes);
+        // $schedule = Schedule::create($attributes);
+        $schedule = $event->schedules()->create($attributes);
 
         return response()->json(['data' => $schedule]);
     }
@@ -63,13 +65,12 @@ class ScheduleController extends Controller
     public function update(Request $request, Schedule $schedule)
     {
         $attributes = $request->validate([
-            'nama_kegiatan' => ['required'],
-            'detail_kegiatan' => ['required'],
-            'tanggal' => ['required'],
-            'tempat' => ['required'],
-            'jam' => ['required'],
+            // 'nama_kegiatan' => ['required'],
+            // 'detail_kegiatan' => ['required'],
+            // 'tanggal' => ['required'],
+            // 'tempat' => ['required'],
+            // 'jam' => ['required'],
             'status' => ['required'],
-            'event_id' => ['required'],
         ]);
 
         $schedule->update($attributes);

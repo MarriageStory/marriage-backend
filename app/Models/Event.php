@@ -15,13 +15,18 @@ class Event extends Model
         'time',
         'tempat',
         'total_pembayaran',
+        'status_pembayaran',
+        'jumlah_terbayar',
         'note',
-        'paket',
-        'user_id',
+        'paket1',
+        'paket2',
+        'paket3',
+        'paket4',
+        'paket5',
         'gencode',
     ];
 
-    protected $with = ['schedules'];
+    // protected $with = ['schedules'];
 
     public function schedules()
     {
@@ -31,5 +36,10 @@ class Event extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function payment_details()
+    {
+        return $this->hasOne(PaymentDetail::class);
     }
 }
