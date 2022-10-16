@@ -17,26 +17,31 @@ class AuthController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function update(Request $request, User $user)
+    public function show($id)
+    {
+        $user = User::find($id);
+        return response()->json(['data' => $user]);
+    }
+
+    public function update(Request $request, $id)
     {
         $attribute = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required'],
             'role_name' => ['required'],
-            'role_slug' => ['required'],
         ]);
+
+        $user = User::find($id);
 
         $user->update($attribute);
 
         return response()->json(['data' => $user]);
     }
-    public function show(User $user)
+
+    public function destroy($id)
     {
-        return response()->json(['data' => $user]);
-    }
-    public function destroy(User $user)
-    {
+        $user = User::find($id);
         $user->delete;
 
         return response()->json(['messages' => "Berhasil Menghapus Payment"]);
@@ -49,7 +54,6 @@ class AuthController extends Controller
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required'],
             'role_name' => ['required'],
-            'role_slug' => ['required'],
         ]);
 
 

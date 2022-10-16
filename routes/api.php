@@ -25,7 +25,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
-Route::apiResource('admin', AuthController::class);
+Route::get('admin', [AuthController::class, 'index']);
+Route::get('admin/{id}', [AuthController::class, 'show']);
+Route::post('admin/{id}/update', [AuthController::class, 'update']);
+Route::get('admin/{id}/delete', [AuthController::class, 'destroy']);
+// Route::apiResource('admin', AuthController::class);
+// Route::get('coba', [AuthController::class, 'show']);
+// Route::get('coba', [AuthController::class, 'index']);
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::apiResource('payments', PaymentController::class)->middleware('clientMiddleware', 'roleMiddleware');

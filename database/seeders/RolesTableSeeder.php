@@ -17,22 +17,18 @@ class RolesTableSeeder extends Seeder
     {
         DB::table('roles')->insert([
             'role_name' => 'WeddingOrganize',
-            'role_slug' => 'WeddingOrganize',
         ]);
-        
+
         DB::table('roles')->insert([
             'role_name' => 'Client',
-            'role_slug' => 'Client',
         ]);
-        
+
         DB::table('roles')->insert([
             'role_name' => 'Employee',
-            'role_slug' => 'Employee',
         ]);
 
         DB::table('roles')->insert([
             'role_name' => 'Admin',
-            'role_slug' => 'Admin',
         ]);
     }
 }
