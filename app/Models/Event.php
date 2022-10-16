@@ -16,6 +16,7 @@ class Event extends Model
         'tempat',
         'total_pembayaran',
         'note',
+        'paket',
         'user_id',
         'gencode',
     ];

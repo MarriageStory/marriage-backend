@@ -6,6 +6,8 @@ use App\Models\Event;
 use App\Models\Payment;
 use App\Models\PaymentDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 
 class PaymentDetailController extends Controller
 {
@@ -33,10 +35,26 @@ class PaymentDetailController extends Controller
             'bayar' => ['required'],
             'tanggal' => ['required'],
             'detail' => ['required'],
-            'image' => ['required|image|mimes:png,jpg,jpeg|max:2048'],
+            'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
         ]);
 
-        $paymentDetail = $payment->payment_details()->create($attributes);
+        //mengambil data file yang diupload
+        $file           = $request->file('image');
+        //mengambil nama file
+        $nama_file      = $file->getClientOriginalName();
+        //memindahkan file ke folder tujuan
+        $file->move('file_upload', $file->getClientOriginalName());
+
+        $paymentDetail = new PaymentDetail();
+        $paymentDetail->image = $nama_file;
+        $paymentDetail->bayar = $attributes['bayar'];
+        $paymentDetail->tanggal = $attributes['tanggal'];
+        $paymentDetail->detail = $attributes['detail'];
+        $paymentDetail->nama_payment = $attributes['nama_payment'];
+        $paymentDetail->payment_id = $payment->id;
+
+        $paymentDetail->save();
+
         $payment->terbayar = $payment->terbayar + $paymentDetail->bayar;
         $payment->save();
 

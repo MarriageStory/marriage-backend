@@ -29,32 +29,8 @@ Route::get('admin', [AuthController::class, 'index']);
 Route::get('admin/{id}', [AuthController::class, 'show']);
 Route::post('admin/{id}/update', [AuthController::class, 'update']);
 Route::get('admin/{id}/delete', [AuthController::class, 'destroy']);
-// Route::apiResource('admin', AuthController::class);
-// Route::get('coba', [AuthController::class, 'show']);
-// Route::get('coba', [AuthController::class, 'index']);
-
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::apiResource('payments', PaymentController::class)->middleware('clientMiddleware', 'roleMiddleware');
-
-//     Route::prefix('payments')->middleware('roleMiddleware', 'clientMiddleware')->group(function () {
-//         Route::get('{payment}/details', [PaymentDetailController::class, 'index']);
-//         Route::get('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'show']);
-//         Route::post('{payment}', [PaymentDetailController::class, 'store']);
-//         Route::put('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'update']);
-//         Route::delete('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
-//     });
-
-//     // Route::apiResource('schedules', ScheduleController::class)->middleware('clientMiddleware');
-//     Route::apiResource('schedules', ScheduleController::class)->middleware('clientMiddleware');
-//     Route::apiResource('events', EventController::class)->middleware('clientMiddleware');
-
-//     Route::get('/user', function (Request $request) {
-//         return $request->user();
-//     });
-// });
 
 Route::middleware('auth:sanctum')->group(function () {
-
 
     Route::apiResource('payments', PaymentController::class);
     Route::prefix('payments')->group(function () {
@@ -64,12 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'update']);
         Route::delete('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
     });
-
     Route::apiResource('events', EventController::class);
     Route::apiResource('schedules', ScheduleController::class);
-    // Route::get('schedules', [ScheduleController::class, 'index']);
-
-
     Route::get('/user', function (Request $request) {
         return $request->user();
     });

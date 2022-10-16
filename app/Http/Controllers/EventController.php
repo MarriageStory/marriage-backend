@@ -35,6 +35,7 @@ class EventController extends Controller
             'tempat' => ['required'],
             'total_pembayaran' => ['required'],
             'note' => ['required'],
+            'paket' => ['required'],
             'user_id' => ['required'],
         ]);
 
