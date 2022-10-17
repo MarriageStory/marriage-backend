@@ -26,10 +26,11 @@ class AuthController extends Controller
     public function update(Request $request, $id)
     {
         $attribute = $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required'],
-            'role_name' => ['required'],
+            // 'name' => ['required'],
+            // 'email' => ['required', 'email', 'unique:users'],
+            // 'password' => ['required'],
+            // 'role_name' => ['required'],
+            'gencode' => ['required'],
         ]);
 
         $user = User::find($id);

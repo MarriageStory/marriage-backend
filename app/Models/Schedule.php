@@ -16,6 +16,7 @@ class Schedule extends Model
         'tempat',
         'jam',
         'status',
+        'gencode',
         'event_id'
     ];
 

@@ -27,7 +27,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::get('admin', [AuthController::class, 'index']);
 Route::get('admin/{id}', [AuthController::class, 'show']);
-Route::post('admin/{id}/update', [AuthController::class, 'update']);
+Route::put('admin/{id}/update', [AuthController::class, 'update']);
 Route::get('admin/{id}/delete', [AuthController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -40,7 +40,25 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'update']);
         Route::delete('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
     });
-    Route::apiResource('events', EventController::class);
+
+    Route::prefix('events1')->group(function () {
+        Route::get('{event}/details', [ScheduleController::class, 'index']);
+        Route::get('{event}/details/{schedule}', [ScheduleController::class, 'show']);
+        Route::post('{event}', [ScheduleController::class, 'store']);
+        Route::put('{event}/details/{schedule}', [ScheduleController::class, 'update']);
+        Route::delete('{event}/details/{schedule}', [ScheduleController::class, 'destroy']);
+    });
+
+    Route::prefix('events2')->group(function () {
+        Route::get('{event}/details', [PaymentDetailController::class, 'index']);
+        Route::get('{event}/details/{paymentDetail}', [PaymentDetailController::class, 'show']);
+        Route::post('{event}', [PaymentDetailController::class, 'store']);
+        Route::put('{event}/details/{paymentDetail}', [PaymentDetailController::class, 'update']);
+        Route::delete('{event}/details/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
+    });
+
+    Route::apiResource('events1', EventController::class);
+    Route::apiResource('events2', EventController::class);
     Route::apiResource('schedules', ScheduleController::class);
     Route::get('/user', function (Request $request) {
         return $request->user();
