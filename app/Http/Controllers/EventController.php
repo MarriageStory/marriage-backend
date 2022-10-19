@@ -73,18 +73,18 @@ class EventController extends Controller
     {
         $attribute = $request->validate([
             'name_client' => ['required'],
-            'date' => ['required'],
-            'time' => ['required'],
-            'tempat' => ['required'],
-            'total_pembayaran' => ['required'],
-            'status_pembayaran' => ['required'],
-            'jumlah_terbayar' => ['required'],
-            'note' => ['required'],
-            'paket1' => ['required'],
-            'paket2' => ['required'],
-            'paket3' => ['required'],
-            'paket4' => ['required'],
-            'paket5' => ['required'],
+            // 'date' => ['required'],
+            // 'time' => ['required'],
+            // 'tempat' => ['required'],
+            // 'total_pembayaran' => ['required'],
+            // 'status_pembayaran' => ['required'],
+            // 'jumlah_terbayar' => ['required'],
+            // 'note' => ['required'],
+            // 'paket1' => ['required'],
+            // 'paket2' => ['required'],
+            // 'paket3' => ['required'],
+            // 'paket4' => ['required'],
+            // 'paket5' => ['required'],
         ]);
 
         $event->update($attribute);

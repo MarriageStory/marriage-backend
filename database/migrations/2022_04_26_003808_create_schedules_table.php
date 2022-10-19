@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('jam');
             $table->string('status');
             $table->string('gencode');
-            $table->foreignId('event_id')->references('id')->on('events');
+            $table->foreignId('event_id')->references('id')->on('events')->cascadeOnDelete();
             $table->timestamps();
         });
     }
