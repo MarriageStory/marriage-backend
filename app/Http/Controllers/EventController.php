@@ -34,9 +34,14 @@ class EventController extends Controller
             'time' => ['required'],
             'tempat' => ['required'],
             'total_pembayaran' => ['required'],
+            'status_pembayaran' => ['required'],
+            'jumlah_terbayar' => ['required'],
             'note' => ['required'],
-            'paket' => ['required'],
-            'user_id' => ['required'],
+            'paket1' => ['required'],
+            'paket2' => ['required'],
+            'paket3' => ['required'],
+            'paket4' => ['required'],
+            'paket5' => ['required'],
         ]);
 
         $attribute['gencode'] = Str::random(4);
@@ -72,8 +77,14 @@ class EventController extends Controller
             'time' => ['required'],
             'tempat' => ['required'],
             'total_pembayaran' => ['required'],
+            'status_pembayaran' => ['required'],
+            'jumlah_terbayar' => ['required'],
             'note' => ['required'],
-            'user_id' => ['required'],
+            'paket1' => ['required'],
+            'paket2' => ['required'],
+            'paket3' => ['required'],
+            'paket4' => ['required'],
+            'paket5' => ['required'],
         ]);
 
         $event->update($attribute);
@@ -91,6 +102,6 @@ class EventController extends Controller
     {
         $event->delete();
 
-        return response()->json(['messages' => "Berhasil Menghapus Payment"]);
+        return response()->json(['messages' => "Berhasil Menghapus Event"]);
     }
 }
