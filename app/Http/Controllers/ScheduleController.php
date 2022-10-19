@@ -50,8 +50,9 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Schedule $schedule)
+    public function show(Event $event ,Schedule $schedule)
     {
+        $schedule = $event->whereHas('schedules', fn($q) => $q->where('id', $schedule->id))->first();
         return response()->json(['data' => $schedule]);
     }
 

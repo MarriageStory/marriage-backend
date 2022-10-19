@@ -33,6 +33,9 @@ Route::get('admin/{id}/delete', [AuthController::class, 'destroy']);
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('payments', PaymentController::class);
+    Route::apiResource('events', EventController::class);
+    Route::apiResource('schedules', ScheduleController::class);
+
     Route::prefix('payments')->group(function () {
         Route::get('{payment}/details', [PaymentDetailController::class, 'index']);
         Route::get('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'show']);
@@ -41,25 +44,24 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
     });
 
-    Route::prefix('events1')->group(function () {
-        Route::get('{event}/details', [ScheduleController::class, 'index']);
-        Route::get('{event}/details/{schedule}', [ScheduleController::class, 'show']);
-        Route::post('{event}', [ScheduleController::class, 'store']);
-        Route::put('{event}/details/{schedule}', [ScheduleController::class, 'update']);
-        Route::delete('{event}/details/{schedule}', [ScheduleController::class, 'destroy']);
+    Route::prefix('events')->group(function () {
+        Route::get('{event}/schedule', [ScheduleController::class, 'index']);
+        Route::get('{event}/schedule/{schedule}', [ScheduleController::class, 'show']);
+        Route::post('{event}/schedule', [ScheduleController::class, 'store']);
+        Route::put('{event}/schedule/{schedule}', [ScheduleController::class, 'update']);
+        Route::delete('{event}/schedule/{schedule}', [ScheduleController::class, 'destroy']);
+        
     });
 
-    Route::prefix('events2')->group(function () {
-        Route::get('{event}/details', [PaymentDetailController::class, 'index']);
-        Route::get('{event}/details/{paymentDetail}', [PaymentDetailController::class, 'show']);
-        Route::post('{event}', [PaymentDetailController::class, 'store']);
-        Route::put('{event}/details/{paymentDetail}', [PaymentDetailController::class, 'update']);
-        Route::delete('{event}/details/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
+    Route::prefix('events')->group(function () {
+        Route::get('{event}/details-payment', [PaymentDetailController::class, 'index']);
+        Route::get('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'show']);
+        Route::post('{event}/details-payment', [PaymentDetailController::class, 'store']);
+        Route::put('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'update']);
+        Route::delete('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
     });
 
-    Route::apiResource('events1', EventController::class);
-    Route::apiResource('events2', EventController::class);
-    Route::apiResource('schedules', ScheduleController::class);
+
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
