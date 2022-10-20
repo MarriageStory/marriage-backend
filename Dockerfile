@@ -1,9 +1,5 @@
 FROM php:7.4-fpm
 
-# Arguments defined in docker-compose.yml
-ARG user
-ARG uid
-
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
@@ -22,6 +18,8 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # Set working directory
 WORKDIR /var/www
