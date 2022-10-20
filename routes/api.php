@@ -50,16 +50,20 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('{event}/schedule', [ScheduleController::class, 'store']);
         Route::put('{event}/schedule/{schedule}', [ScheduleController::class, 'update']);
         Route::delete('{event}/schedule/{schedule}', [ScheduleController::class, 'destroy']);
-        
-    });
-
-    Route::prefix('events')->group(function () {
         Route::get('{event}/details-payment', [PaymentDetailController::class, 'index']);
         Route::get('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'show']);
         Route::post('{event}/details-payment', [PaymentDetailController::class, 'store']);
         Route::put('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'update']);
         Route::delete('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
     });
+
+    // Route::prefix('events')->group(function () {
+    //     Route::get('{event}/details-payment', [PaymentDetailController::class, 'index']);
+    //     Route::get('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'show']);
+    //     Route::post('{event}/details-payment', [PaymentDetailController::class, 'store']);
+    //     Route::put('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'update']);
+    //     Route::delete('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
+    // });
 
 
     Route::get('/user', function (Request $request) {
