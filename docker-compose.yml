@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  app:
+    build:
+      args:
+        user: marriage
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    container_name: marriage-backend
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+
+  nginx:
+    image: nginx:alpine
+    container_name: travellist-nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www
+      - ./nginx:/etc/nginx/conf.d/

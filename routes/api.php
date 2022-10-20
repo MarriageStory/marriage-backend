@@ -31,7 +31,6 @@ Route::put('admin/{id}/update', [AuthController::class, 'update']);
 Route::get('admin/{id}/delete', [AuthController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->group(function () {
-
     Route::apiResource('payments', PaymentController::class);
     Route::apiResource('events', EventController::class);
     Route::apiResource('schedules', ScheduleController::class);
@@ -56,15 +55,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'update']);
         Route::delete('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
     });
-
-    // Route::prefix('events')->group(function () {
-    //     Route::get('{event}/details-payment', [PaymentDetailController::class, 'index']);
-    //     Route::get('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'show']);
-    //     Route::post('{event}/details-payment', [PaymentDetailController::class, 'store']);
-    //     Route::put('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'update']);
-    //     Route::delete('{event}/details-payment/{paymentDetail}', [PaymentDetailController::class, 'destroy']);
-    // });
-
 
     Route::get('/user', function (Request $request) {
         return $request->user();
