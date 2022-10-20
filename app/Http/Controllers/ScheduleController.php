@@ -66,11 +66,11 @@ class ScheduleController extends Controller
     public function update(Request $request, Schedule $schedule)
     {
         $attributes = $request->validate([
-            // 'nama_kegiatan' => ['required'],
-            // 'detail_kegiatan' => ['required'],
-            // 'tanggal' => ['required'],
-            // 'tempat' => ['required'],
-            // 'jam' => ['required'],
+            'nama_kegiatan' => ['required'],
+            'detail_kegiatan' => ['required'],
+            'tanggal' => ['required'],
+            'tempat' => ['required'],
+            'jam' => ['required'],
             'status' => ['required'],
         ]);
 
