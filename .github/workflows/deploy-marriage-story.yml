@@ -1,48 +1,48 @@
-  name: Deploy to VPS
+name: Deploy Marriage
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  build_and_push_to_Docker_Hub:
-    # The type of runner that the job will run on
+
+  build:
+
     runs-on: ubuntu-latest
-    # build docker image and push to docker hub
-    # only if the app build and test successfully
+
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v2
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.LARAVELDEPLOY }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.LARAVELDEPLOY }}/travello-frontend:latest
-
-
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: |
-            bash /home/marriagestory/docker/marriage-story.sh
+    - name: Checkout Git
+      uses: actions/checkout@v3
+      
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/marriage-backend:latest
+        
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        script: |
+          docker rm -f marriage-backend
+          docker image rm -f ${{ secrets.DOCKERHUB_USERNAME }}/marriage-backend:latest
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/marriage-backend:latest
+          docker run -d -p 80:80 --name marriage-backend ${{ secrets.DOCKERHUB_USERNAME }}/marriage-backend:latest
