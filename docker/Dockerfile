@@ -18,6 +18,8 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY composer.json composer.json
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
