@@ -46,4 +46,4 @@ jobs:
           docker rm -f marriage-backend
           docker image rm -f ${{ secrets.DOCKERHUB_USERNAME }}/marriage-backend:latest
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/marriage-backend:latest
-          docker run -d -p 80:80 --name marriage-backend ${{ secrets.DOCKERHUB_USERNAME }}/marriage-backend:latest
+          docker run -d -p 80:80 --restart always --name marriage-backend ${{ secrets.DOCKERHUB_USERNAME }}/marriage-backend:latest
