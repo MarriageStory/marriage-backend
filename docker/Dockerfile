@@ -32,3 +32,4 @@ RUN php artisan shield:generate
 RUN php artisan db:seed
 RUN npm run dev
 ADD docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --chown=node:node ./package*.json ./
