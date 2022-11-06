@@ -149,9 +149,9 @@ class PaymentDetailController extends Controller
         ]);
 
         $paymentDetail = $event->payment_details()->create($attributes);
-        
+
         $event->jumlah_terbayar = $event->jumlah_terbayar + $paymentDetail->bayar;
-        if($event->jumlah_terbayar == $event->total_pembayaran){
+        if ($event->jumlah_terbayar == $event->total_pembayaran) {
             $event->status_pembayaran = "done";
         }
         $event->save();

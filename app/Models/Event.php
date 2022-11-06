@@ -18,11 +18,7 @@ class Event extends Model
         'status_pembayaran',
         'jumlah_terbayar',
         'note',
-        'paket1',
-        'paket2',
-        'paket3',
-        'paket4',
-        'paket5',
+        'paket',
         'gencode',
     ];
 
@@ -41,5 +37,9 @@ class Event extends Model
     public function payment_details()
     {
         return $this->hasOne(PaymentDetail::class);
+    }
+    public function paket()
+    {
+        return $this->hasMany(Paket::class);
     }
 }

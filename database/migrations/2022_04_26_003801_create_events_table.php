@@ -23,11 +23,6 @@ return new class extends Migration
             $table->enum('status_pembayaran', ['done', 'pending'])->default('pending');
             $table->string('jumlah_terbayar');
             $table->string('note');
-            $table->string('paket1');
-            $table->string('paket2');
-            $table->string('paket3');
-            $table->string('paket4');
-            $table->string('paket5');
             $table->string('gencode');
             $table->timestamps();
         });
