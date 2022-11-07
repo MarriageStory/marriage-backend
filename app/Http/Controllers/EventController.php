@@ -16,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $event = Event::get();
+        $event = Event::with('paket')->get();
 
         return response()->json(['data' => $event]);
     }
@@ -96,14 +96,35 @@ class EventController extends Controller
             'status_pembayaran' => ['required'],
             'jumlah_terbayar' => ['required'],
             'note' => ['required'],
-            'paket1' => ['required'],
-            'paket2' => ['required'],
-            'paket3' => ['required'],
-            'paket4' => ['required'],
-            'paket5' => ['required'],
+            'paket.*' => ['required'],
         ]);
 
-        $event->update($attribute);
+        // $event->update($attribute);
+
+        $event->name_client = $attribute['name_client'];
+        $event->date = $attribute['date'];
+        $event->time = $attribute['time'];
+        $event->tempat = $attribute['tempat'];
+        $event->total_pembayaran = $attribute['total_pembayaran'];
+        $event->status_pembayaran = $attribute['status_pembayaran'];
+        $event->jumlah_terbayar = $attribute['jumlah_terbayar'];
+        $event->note = $attribute['note'];
+        $event->save();
+
+
+        $paket = Paket::where('event_id', $event->id)->get();
+        foreach ($paket as $paket) {
+            $paket->delete();
+        }
+
+        for ($i = 0; $i < count($attribute['paket']); $i++) {
+            $paket = new Paket();
+            $paket->event_id = $event->id;
+            $paket->deskripsi = $attribute['paket'][$i];
+            $paket->save();
+        }
+
+        $event = Event::where('id', $event->id)->with('paket')->first();
 
         return response()->json(['data' => $event]);
     }

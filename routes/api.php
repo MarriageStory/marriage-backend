@@ -35,6 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('events', EventController::class);
     Route::apiResource('schedules', ScheduleController::class);
 
+    Route::post('events/{event}', [EventController::class, 'update']);
+
     Route::prefix('payments')->group(function () {
         Route::get('{payment}/details', [PaymentDetailController::class, 'index']);
         Route::get('{payment}/details/{paymentDetail}', [PaymentDetailController::class, 'show']);

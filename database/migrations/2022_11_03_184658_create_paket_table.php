@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('paket', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('event_id')->references('id')->on('events')->cascadeOnDelete();
             $table->string('deskripsi');
             $table->timestamps();
         });
